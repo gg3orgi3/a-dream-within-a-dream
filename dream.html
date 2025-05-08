@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>A Dream Within a Dream</title>
+  <link rel="stylesheet" href="dream.css">
+  <link href="https://fonts.googleapis.com/css2?family=Spectral+SC:wght@500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Courier+Prime:wght@300&display=swap" rel="stylesheet">
+</head>
+<body>
+  <h1>A DREAM WITHIN A DREAM</h1>
+  <p class="author">Edgar Allen Poe</p>
+  <div id="poem"></div>
+ 
+  <div id="floating-dreams">
+    <span class="dream-word" style="top: 12vh; left: 8vw; font-size: 4rem; opacity: 0.08; animation-duration: 10s; animation-delay: 1s;">DREAM</span>
+    <span class="dream-word" style="top: 23vh; left: 62vw; font-size: 3.5rem; opacity: 0.1; animation-duration: 12s; animation-delay: 3s;">DREAM</span>
+    <span class="dream-word" style="top: 40vh; left: 38vw; font-size: 5rem; opacity: 0.06; animation-duration: 14s; animation-delay: 5s;">DREAM</span>
+    <span class="dream-word" style="top: 77vh; left: 15vw; font-size: 4.2rem; opacity: 0.07; animation-duration: 11s; animation-delay: 2s;">DREAM</span>
+    <span class="dream-word" style="top: 90vh; left: 80vw; font-size: 3.8rem; opacity: 0.09; animation-duration: 13s; animation-delay: 4s;">DREAM</span>
+  </div>
+
+  <script>
+    const lines = [
+      "Take this kiss upon the brow!",
+      "And, in parting from you now,",
+      "Thus much let me avow —",
+      "You are not wrong, who deem",
+      "That my days have been a dream;",
+      "Yet if hope has flown away",
+      "In a night, or in a day,",
+      "In a vision, or in none,",
+      "Is it therefore the less gone?",
+      "All that we see or seem",
+      "Is but a dream within a dream.",
+      "",
+      "I stand amid the roar",
+      "Of a surf-tormented shore,",
+      "And I hold within my hand",
+      "Grains of the golden sand —",
+      "How few! yet how they creep",
+      "Through my fingers to the deep,",
+      "While I weep — while I weep!",
+      "O God! Can I not grasp",
+      "Them with a tighter clasp?",
+      "O God! can I not save",
+      "One from the pitiless wave?",
+      "Is all that we see or seem",
+      "But a dream within a dream?"
+    ];
+
+    const container = document.getElementById('poem');
+
+    lines.forEach((text, i) => {
+      const line = document.createElement('div');
+      line.className = 'line';
+      line.innerText = text;
+      line.dataset.text = text;
+
+      //Fade in and out each line
+      setTimeout(() => {
+        line.classList.add('visible');
+      }, i * 2000);
+
+      container.appendChild(line);
+
+      
+      line.addEventListener('click', (e) => {
+        if (e.target.tagName === 'SPAN') {
+          createParticles(e.target);
+        }
+      });
+      line.innerHTML = text.split(' ').map(word => `<span>${word}</span>`).join(' ');
+    });
+  </script>
+</body>
+</html>
